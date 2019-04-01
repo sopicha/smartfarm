@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- Apps color theme "Frozen - Elsa"-->
+
+    <color name="colorLightBlue">#93dbe9</color>
+    <color name="colorMarine">#689cc5</color>
+    <color name="colorNavy">#5e6fa3</color>
+    <color name="colorDarkNavy">#3b4368</color>
+    <color name="colorDeepNavy">#191d3a</color>
+    <color name="colorLightPastelNavy">#d9dbee</color>
+    <color name="colorPastelNavy">#b3b7e2</color>
+
+</resources>

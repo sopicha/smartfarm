@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Smart Farm</string>
+    <string name="title_webcam">Webcam</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_setting">Setting</string>
+    <string name="head_temperature">Temperature</string>
+    <string name="head_humidity">Humidity</string>
+    <string name="head_light_intensity">Light Intensity</string>
+    <string name="head_soil_moisture">Soil Moisture</string>
+    <string name="head_water_flow_controller">Water Flow Controller</string>
+    <string name="water_flow_id_1">ID: 01</string>
+    <string name="water_flow_id_2">ID: 02</string>
+    <string name="water_flow_id_3">ID: 03</string>
+
+</resources>
