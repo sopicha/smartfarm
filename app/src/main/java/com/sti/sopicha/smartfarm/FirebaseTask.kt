@@ -25,7 +25,7 @@ class FirebaseTask(var dt: Data?,dat: FirebaseDatabase,val refCmd: String,val re
         refCommand!!.child(ID).setValue(value)
     }
 
-    fun readData(): Data?{
+    fun readData(firebaseCallback: FirebaseCallback){
 
 
         query =  refData!!.orderByKey().limitToLast(1)
@@ -36,19 +36,19 @@ class FirebaseTask(var dt: Data?,dat: FirebaseDatabase,val refCmd: String,val re
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                  //  data = dataSnapshot.getValue(Data::class.java::class.java!!)
+                //  data = dataSnapshot.getValue(Data::class.java::class.java!!)
                 for (child in dataSnapshot.children) {
-                    data= Data(child.child("humidity").value!!.toString(),
+                    data = Data(child.child("humidity").value!!.toString(),
                             child.child("light").value!!.toString(),
                             child.child("soil").value!!.toString(),
                             child.child("temperature").value!!.toString(),
                             child.child("time").value!!.toString())
-                    Log.d(TAG, data!!.humidity.toString())
-                }
-            }
 
+                }
+                firebaseCallback.onCallback(data)
+
+        }
         })
 
-        return data
     }
 }

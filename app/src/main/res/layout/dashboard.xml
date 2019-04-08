@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -29,6 +30,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/head_temperature"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +43,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/head_humidity"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.861"
             app:layout_constraintStart_toEndOf="@+id/h_temperature"
@@ -85,7 +90,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/h_temperature"
                 app:maximum="100"
-                app:progress="40"
+                app:progress="0"
                 app:progressAnimationDuration="100"
                 app:startAngle="90" />
 
@@ -94,37 +99,50 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:text="30°C" />
+                android:text=""
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:fontFamily="@font/lato_light" />
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="25dp">
+            android:paddingRight="25dp"
+            >
 
             <me.itangqi.waveloadingview.WaveLoadingView
                 android:id="@+id/humid_prog"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
+                app:fontFamily="@font/lato_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toEndOf="@+id/temp_prog"
                 app:layout_constraintTop_toBottomOf="@+id/h_humidity"
                 app:wlv_borderColor="#93dbe9"
                 app:wlv_borderWidth="3dp"
-                app:wlv_progressValue="40"
+                app:wlv_progressValue="0"
                 app:wlv_round_rectangle="true"
                 app:wlv_shapeType="circle"
-                app:wlv_titleCenter="66%"
+                app:wlv_titleCenter=""
                 app:wlv_titleCenterColor="@android:color/black"
-                app:wlv_titleCenterSize="16sp"
+                app:wlv_titleCenterSize="14sp"
                 app:wlv_triangle_direction="north"
                 app:wlv_waveAmplitude="70"
                 app:wlv_waveColor="#689cc5" />
+
+            <TextView
+                android:id="@+id/humid_prog_text"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/lato_light"
+                android:gravity="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </FrameLayout>
 
     </LinearLayout>
@@ -150,6 +168,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/head_light_intensity"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temp_prog" />
 
@@ -160,10 +180,11 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/head_soil_moisture"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.754"
-            app:layout_constraintStart_toEndOf="@+id/h_light"
-            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView" />
+            app:layout_constraintStart_toEndOf="@+id/h_light" />
 
     </LinearLayout>
 
@@ -171,10 +192,12 @@
         android:id="@+id/h_water_flow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="@dimen/dash_vertical_space"
         android:text="@string/head_water_flow_controller"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:fontFamily="@font/lato_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
@@ -203,7 +226,9 @@
             android:layout_weight="1"
             android:background="@drawable/light"
             android:gravity="center"
-            android:text="42%" />
+            android:text=""
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light" />
 
         <TextView
             android:id="@+id/mois_value"
@@ -214,7 +239,9 @@
             android:layout_weight="1"
             android:background="@drawable/mois"
             android:gravity="center"
-            android:text="87%" />
+            android:text=""
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:fontFamily="@font/lato_light" />
 
     </LinearLayout>
 
@@ -238,6 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="3dp"
+            android:fontFamily="@font/lato_light"
             android:text="@string/water_flow_id_1"
             android:theme="@style/SCBSwitch" />
 
@@ -247,6 +275,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="3dp"
+            android:fontFamily="@font/lato_light"
             android:text="@string/water_flow_id_2"
             android:theme="@style/SCBSwitch" />
 
@@ -255,6 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/lato_light"
             android:text="@string/water_flow_id_3"
             android:theme="@style/SCBSwitch" />
     </LinearLayout>

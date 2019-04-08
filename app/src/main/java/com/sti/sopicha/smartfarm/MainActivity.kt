@@ -1,11 +1,16 @@
 package com.sti.sopicha.smartfarm
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
+import android.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_main.*
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,10 +38,11 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         toolbar = supportActionBar!!
         val dashboardFragment = DashboardFragment.newInstance()
         openFragment(dashboardFragment)
@@ -44,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
+
 
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
