@@ -12,4 +12,10 @@
     <string name="water_flow_id_2">ID: 02</string>
     <string name="water_flow_id_3">ID: 03</string>
 
+    <string name="switch_water_flow_id_1">ID1</string>
+    <string name="switch_water_flow_id_2">ID2</string>
+    <string name="switch_water_flow_id_3">ID3</string>
+    <string name="water_flow_on">1</string>
+    <string name="water_flow_off">0</string>
+
 </resources>

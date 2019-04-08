@@ -88,6 +88,13 @@
                 app:progress="40"
                 app:progressAnimationDuration="100"
                 app:startAngle="90" />
+
+            <TextView
+                android:id="@+id/temp_prog_text"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="30°C" />
         </FrameLayout>
 
         <FrameLayout
@@ -97,7 +104,7 @@
             android:paddingRight="25dp">
 
             <me.itangqi.waveloadingview.WaveLoadingView
-                android:id="@+id/waveLoadingView"
+                android:id="@+id/humid_prog"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
@@ -226,7 +233,7 @@
         app:layout_constraintTop_toBottomOf="@+id/h_water_flow">
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/id1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -235,7 +242,7 @@
             android:theme="@style/SCBSwitch" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/id2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -244,7 +251,7 @@
             android:theme="@style/SCBSwitch" />
 
         <Switch
-            android:id="@+id/switch3"
+            android:id="@+id/id3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
