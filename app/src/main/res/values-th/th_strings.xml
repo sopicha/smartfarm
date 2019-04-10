@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Farm</string>
+    <string name="title_webcam">กล้องวงจรปิด</string>
+    <string name="title_dashboard">กระดานข้อมูล</string>
+    <string name="title_setting">ตั้งค่า</string>
+    <string name="head_temperature">อุณหภูมิ</string>
+    <string name="head_humidity">ความชื้น</string>
+    <string name="head_light_intensity">ความเข้มแสง</string>
+    <string name="head_soil_moisture">ความชื้นในดิน</string>
+    <string name="head_water_flow_controller">ตัวควบคุมการไหลของน้ำ</string>
+    <string name="water_flow_id_1">ID: 01</string>
+    <string name="water_flow_id_2">ID: 02</string>
+    <string name="water_flow_id_3">ID: 03</string>
+
+    <string name="switch_water_flow_id_1">ID1</string>
+    <string name="switch_water_flow_id_2">ID2</string>
+    <string name="switch_water_flow_id_3">ID3</string>
+
+    <string name="actionbar_dashboard">กระดานข้อมูลของสมาร์ทฟาร์ม</string>
+    <string name="actionbar_webcam">กล้องวงจรปิดของสมาร์ทฟาร์ม</string>
+    <string name="actionbar_setting">ตั้งค่า</string>
+    <string name="header_language">ภาษา</string>
+    <string name="eng_lang">English</string>
+    <string name="thai_lang">ภาษาไทย</string>
+
+</resources>

@@ -1,13 +1,13 @@
-package com.sti.sopicha.smartfarm
+package com.sti.sopicha.smartfarm.helper
 
 import android.util.Log
 import com.google.firebase.database.*
 import com.sti.sopicha.smartfarm.model.Data
 import com.google.firebase.database.DataSnapshot
+import com.sti.sopicha.smartfarm.helper.FirebaseCallback
 
 
-
-class FirebaseTask(var dt: Data?,dat: FirebaseDatabase,val refCmd: String,val refDt: String){
+class FirebaseTask( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: String){
     private val TAG = "sensordata"
     var database: FirebaseDatabase? = null
     var refCommand: DatabaseReference? = null

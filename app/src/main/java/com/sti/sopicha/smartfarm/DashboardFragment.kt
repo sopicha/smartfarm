@@ -1,31 +1,31 @@
 package com.sti.sopicha.smartfarm
 
-import android.content.Context
-import android.content.res.AssetManager
-import android.content.res.Resources
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Switch
 import android.widget.TextView
 import com.budiyev.android.circularprogressbar.CircularProgressBar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
+import com.sti.sopicha.smartfarm.helper.FirebaseCallback
+import com.sti.sopicha.smartfarm.helper.FirebaseTask
 import com.sti.sopicha.smartfarm.model.Data
-import kotlinx.android.synthetic.*
 import me.itangqi.waveloadingview.WaveLoadingView
 import java.lang.StringBuilder
 
 class DashboardFragment: Fragment() {
 
     private val TAG = "sensordata"
+    lateinit var sharedPreferences: SharedPreferences
+    private  val FLOW_SWITCH_KEY1 = "app_flow_switch1"
+    private  val FLOW_SWITCH_KEY2 = "app_flow_switch2"
+    private  val FLOW_SWITCH_KEY3 = "app_flow_switch3"
 
     lateinit var tempProg: CircularProgressBar
     lateinit var tempProgText: TextView
@@ -41,6 +41,7 @@ class DashboardFragment: Fragment() {
     lateinit var typeface: Typeface
 
     companion object {
+
         fun newInstance(): DashboardFragment = DashboardFragment()
     }
 
@@ -49,6 +50,7 @@ class DashboardFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
 
         // init UI view
         typeface = Typeface.createFromAsset(context!!.assets,"Lato-Light.ttf")
@@ -70,7 +72,7 @@ class DashboardFragment: Fragment() {
 
         FirebaseApp.initializeApp(this.requireContext())
 
-        firebaseTask = FirebaseTask(data,FirebaseDatabase.getInstance(),"Command","Data")
+        firebaseTask = FirebaseTask(data, FirebaseDatabase.getInstance(), "Command", "Data")
         firebaseTask.readData(object : FirebaseCallback {
             override fun onCallback(data: Data?) {
                 tempProg.progress = data!!.temperature!!.toFloat()
@@ -81,30 +83,33 @@ class DashboardFragment: Fragment() {
 
                 lightProgText.text = StringBuilder().append(data.light).append("%")
                 moistProgText.text = StringBuilder().append(data.soil).append("%")
-
-                Log.d(TAG, data!!.humidity.toString())
             }
         })
 
-        waterFlowId1.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_1), 0)
-            else
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_1), 1)
-        }
+        waterFlowId1.isChecked = getSwitchState(FLOW_SWITCH_KEY1)
+        waterFlowId2.isChecked = getSwitchState(FLOW_SWITCH_KEY2)
+        waterFlowId3.isChecked = getSwitchState(FLOW_SWITCH_KEY3)
 
-        waterFlowId2.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_2), 0)
-            else
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_2), 1)
-        }
+        setSwitchOnClick(R.string.switch_water_flow_id_1,waterFlowId1,FLOW_SWITCH_KEY1)
+        setSwitchOnClick(R.string.switch_water_flow_id_2,waterFlowId2,FLOW_SWITCH_KEY2)
+        setSwitchOnClick(R.string.switch_water_flow_id_3,waterFlowId3,FLOW_SWITCH_KEY3)
 
-        waterFlowId3.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_3), 0)
-            else
-                firebaseTask.writeCommand(getString(R.string.switch_water_flow_id_3), 1)
+    }
+
+    private fun getSwitchState(key: String): Boolean{
+        val switchState = sharedPreferences.getBoolean(key, false)
+        return switchState
+    }
+
+    private fun setSwitchOnClick(resID:Int,switch:Switch, key:String){
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                firebaseTask.writeCommand(getString(resID), 0)
+                sharedPreferences.edit().putBoolean(key, true).apply()
+            } else {
+                firebaseTask.writeCommand(getString(resID), 1)
+                sharedPreferences.edit().putBoolean(key, false).apply()
+            }
         }
     }
 }
