@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.budiyev.android.circularprogressbar.CircularProgressBar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.sti.sopicha.smartfarm.helper.FirebaseCallback
 import com.sti.sopicha.smartfarm.helper.FirebaseTask
 import com.sti.sopicha.smartfarm.model.Data
@@ -73,7 +74,7 @@ class DashboardFragment: Fragment() {
         FirebaseApp.initializeApp(this.requireContext())
 
         firebaseTask = FirebaseTask(data, FirebaseDatabase.getInstance(), "Command", "Data")
-        firebaseTask.readData(object : FirebaseCallback {
+        firebaseTask.readData(object : FirebaseCallback{
             override fun onCallback(data: Data?) {
                 tempProg.progress = data!!.temperature!!.toFloat()
                 tempProgText.text = StringBuilder().append(data.temperature).append("°C")
@@ -93,6 +94,7 @@ class DashboardFragment: Fragment() {
         setSwitchOnClick(R.string.switch_water_flow_id_1,waterFlowId1,FLOW_SWITCH_KEY1)
         setSwitchOnClick(R.string.switch_water_flow_id_2,waterFlowId2,FLOW_SWITCH_KEY2)
         setSwitchOnClick(R.string.switch_water_flow_id_3,waterFlowId3,FLOW_SWITCH_KEY3)
+
 
     }
 

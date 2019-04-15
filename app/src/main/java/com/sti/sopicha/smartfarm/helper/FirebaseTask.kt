@@ -7,13 +7,15 @@ import com.google.firebase.database.DataSnapshot
 import com.sti.sopicha.smartfarm.helper.FirebaseCallback
 
 
-class FirebaseTask( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: String){
+class FirebaseTask ( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: String){
     private val TAG = "sensordata"
     var database: FirebaseDatabase? = null
     var refCommand: DatabaseReference? = null
     var refData: DatabaseReference? = null
     lateinit var query: Query
     var data: Data? = null
+
+
     init {
         this.data = dt
         this.database = dat
@@ -25,17 +27,17 @@ class FirebaseTask( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: Strin
         refCommand!!.child(ID).setValue(value)
     }
 
-    fun readData(firebaseCallback: FirebaseCallback){
-
-
+    fun readData(firebaseCallback:FirebaseCallback?){
         query =  refData!!.orderByKey().limitToLast(1)
-        query.addListenerForSingleValueEvent(object : ValueEventListener {
+        query.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 // Failed to read value
                 Log.e(TAG, "onCancelled: Failed to read user!")
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                Log.d(TAG, "onDataChange")
                 //  data = dataSnapshot.getValue(Data::class.java::class.java!!)
                 for (child in dataSnapshot.children) {
                     data = Data(child.child("humidity").value!!.toString(),
@@ -45,10 +47,10 @@ class FirebaseTask( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: Strin
                             child.child("time").value!!.toString())
 
                 }
-                firebaseCallback.onCallback(data)
+                firebaseCallback!!.onCallback(data)
 
-        }
+            }
         })
-
     }
+
 }
