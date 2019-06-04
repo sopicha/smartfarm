@@ -14,11 +14,11 @@ class Data{
         // Default constructor required for calls to DataSnapshot.getValue(Read.class)
     }
 
-    constructor(humidity:String?, light:String?, soil:String?, temperature:String?, time:String?){
+    constructor(humidity:String?, light:String?, soil:String?, temperature:String?){
         this.humidity = humidity
         this.light = light
         this.soil = soil
         this.temperature = temperature
-        this.time = time
+        //this.time = time
     }
 }

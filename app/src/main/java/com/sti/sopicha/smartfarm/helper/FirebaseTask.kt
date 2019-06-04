@@ -43,8 +43,8 @@ class FirebaseTask ( dt: Data?,dat: FirebaseDatabase, refCmd: String,refDt: Stri
                     data = Data(child.child("humidity").value!!.toString(),
                             child.child("light").value!!.toString(),
                             child.child("soil").value!!.toString(),
-                            child.child("temperature").value!!.toString(),
-                            child.child("time").value!!.toString())
+                            child.child("temperature").value!!.toString())
+                            //child.child("time").value!!.toString())
 
                 }
                 firebaseCallback!!.onCallback(data)

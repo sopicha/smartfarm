@@ -34,9 +34,10 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_webcam -> {
-                //toolbar.title = getString(R.string.actionbar_webcam)
-                //message.setText(R.string.title_webcam)
+                toolbar.title = getString(R.string.actionbar_webcam)
                 sharedPreferences.edit().putString(FRAGMENT_KEY, webFragmentRef).apply()
+                val cameraFragment = CameraFragment.newInstance()
+                openFragment(cameraFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_setting -> {
@@ -56,24 +57,35 @@ class MainActivity : AppCompatActivity() {
         storedValue = sharedPreferences.getString(APP_LANGUAGE_KEY, "en")
         setContentView(R.layout.activity_main)
         toolbar = supportActionBar!!
+
+
+        navig.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    override fun onResume() {
+        super.onResume()
         val fragment = sharedPreferences.getString(FRAGMENT_KEY, "dash")
         when(fragment){
             dashFragmentRef->{
                 val dashboardFragment = DashboardFragment.newInstance()
                 openFragment(dashboardFragment)
                 toolbar.title = getString(R.string.actionbar_dashboard)
+                navig.menu.findItem(R.id.navigation_dashboard).isChecked = true
             }
             webFragmentRef->{
-                //go to webcam fragment
+                val cameraFragment = CameraFragment.newInstance()
+                openFragment(cameraFragment)
+                toolbar.title = getString(R.string.actionbar_webcam)
+                navig.menu.findItem(R.id.navigation_webcam).isChecked = true
             }
             settFragmentRef->{
                 val settingFragment = SettingFragment.newInstance()
                 openFragment(settingFragment)
                 toolbar.title = getString(R.string.actionbar_setting)
+                navig.menu.findItem(R.id.navigation_setting).isChecked = true
             }
         }
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
     override fun attachBaseContext(newBase: Context) {

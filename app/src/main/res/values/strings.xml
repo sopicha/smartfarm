@@ -22,5 +22,7 @@
     <string name="eng_lang">English</string>
     <string name="header_language">Language</string>
     <string name="thai_lang">ภาษาไทย</string>
+    <string name="cam_id">Camera ID: 01</string>
+    <string name="media_url">rtsp://admin:93759375@192.168.1.35:59500</string>
 
 </resources>
